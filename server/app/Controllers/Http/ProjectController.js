@@ -1,6 +1,7 @@
 'use strict'
 
 const Project = use('App/Models/Project');
+const AuthorizationService = use('App/Services/AthorizationService');
 
 class ProjectController {
   async index({ auth }) {
