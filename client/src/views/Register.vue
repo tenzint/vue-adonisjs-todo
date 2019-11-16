@@ -43,6 +43,7 @@
               ></v-text-field>
             </v-form>
           </v-card-text>
+          <v-alert type="error" :value="registerError">{{ registerError }}</v-alert>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="success" @click="register">
@@ -64,12 +65,14 @@ export default {
     ...mapState('authentication', [
       'registerEmail',
       'registerPassword',
+      'registerError',
     ]),
   },
   methods: {
     ...mapMutations('authentication', [
       'setRegisterEmail',
       'setRegisterPassword',
+      'setRegisterError',
     ]),
     ...mapActions('authentication', [
       'register',
