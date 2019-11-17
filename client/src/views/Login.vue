@@ -27,8 +27,8 @@
                 name="email"
                 prepend-icon="mdi-email"
                 type="text"
-                :value="registerEmail"
-                @input="setRegisterEmail"
+                :value="loginEmail"
+                @input="setLoginEmail"
               ></v-text-field>
 
               <v-text-field
@@ -38,16 +38,16 @@
                 prepend-icon="mdi-lock"
                 append-icon="mdi-eye-off"
                 type="password"
-                :value="registerPassword"
-                @input="setRegisterPassword"
+                :value="loginPassword"
+                @input="setLoginPassword"
               ></v-text-field>
             </v-form>
           </v-card-text>
-          <v-alert type="error" :value="registerError">{{ registerError }}</v-alert>
+          <v-alert type="error" :value="loginError">{{ loginError }}</v-alert>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="success" @click="register">
-              <v-icon class="mr-2">mdi-account-circle</v-icon>
+            <v-btn color="success" @click="login">
+              <v-icon class="mr-2">mdi-fingerprint</v-icon>
               Login
             </v-btn>
           </v-card-actions>
@@ -63,19 +63,19 @@ import { mapState, mapMutations, mapActions } from 'vuex';
 export default {
   computed: {
     ...mapState('authentication', [
-      'registerEmail',
-      'registerPassword',
-      'registerError',
+      'loginEmail',
+      'loginPassword',
+      'loginError',
     ]),
   },
   methods: {
     ...mapMutations('authentication', [
-      'setRegisterEmail',
-      'setRegisterPassword',
-      'setRegisterError',
+      'setLoginEmail',
+      'setLoginPassword',
+      'setLoginError',
     ]),
     ...mapActions('authentication', [
-      'register',
+      'login',
     ]),
   },
 };

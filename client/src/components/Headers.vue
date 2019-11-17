@@ -20,7 +20,7 @@
         Register
       </v-btn>
 
-      <v-btn text v-if="!isLoggedIn">
+      <v-btn text to="/login" v-if="!isLoggedIn">
         <v-icon class="mr-2">mdi-fingerprint</v-icon>
         Login
       </v-btn>
