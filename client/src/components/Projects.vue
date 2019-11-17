@@ -43,7 +43,18 @@
           </v-icon>
         </v-flex>
       </v-layout>
-
+      <EditableRecord
+        :isEditMode="project.isEditMode"
+        :title="project.title"
+        @onInput="setProjectTitle({
+          project,
+          title: $event,
+        })"
+        @onEdit="setEditMode(record)"
+        @onSave="saveProject(record)"
+        @onDelete="deleteProject(record)"
+      >
+      </EditableRecord>
     </div>
     <CreateRecord
       placeholder="My project name is..."
@@ -57,6 +68,7 @@
 <script>
 import { mapActions, mapMutations, mapState } from 'vuex';
 import CreateRecord from '@/components/CreateRecord.vue';
+import EditableRecord from '@/components/EditableRecord.vue';
 
 export default {
   mounted() {
@@ -64,6 +76,7 @@ export default {
   },
   components: {
     CreateRecord,
+    EditableRecord,
   },
   computed: {
     ...mapState('projects', [

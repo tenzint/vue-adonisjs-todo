@@ -9,7 +9,7 @@
       >
       </v-text-field>
     </v-flex>
-    <v-flex xs4>
+    <v-flex xs4 class="text-xs-right">
       <v-btn
         @click="$emit('create')"
         class="pr-2 mt-2"
