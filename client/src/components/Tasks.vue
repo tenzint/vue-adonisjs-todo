@@ -15,7 +15,13 @@
         @onEdit="setEditMode(task)"
         @onSave="saveTask(task)"
         @onDelete="deleteTask(task)"
-      />
+      >
+        <v-icon
+          @click="checkClicked(task)"
+        >
+          {{ task.completed ? 'mdi-check-box-outline' : 'mdi-checkbox-blank-outline'}}
+        </v-icon>
+      </EditableRecord>
     </div>
     <CreateRecord
       placeholder="I need to..."
@@ -52,7 +58,12 @@ export default {
       'setNewTaskName',
       'setEditMode',
       'setTaskDescription',
+      'toggleCompleted',
     ]),
+    checkClicked(task) {
+      this.toggleCompleted(task);
+      this.saveTask(task);
+    },
   },
 };
 </script>

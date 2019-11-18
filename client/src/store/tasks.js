@@ -58,8 +58,11 @@ export default {
     unsetEditMode(state, task) {
       Vue.set(task, 'isEditMode', false);
     },
-    removeProject(state, task) {
+    removeTask(state, task) {
       state.tasks.splice(state.tasks.indexOf(task), 1);
+    },
+    toggleCompleted(state, task) {
+      task.completed = !task.completed;
     },
   },
 };
