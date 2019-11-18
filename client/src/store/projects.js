@@ -7,6 +7,7 @@ export default {
   state: {
     projects: [],
     newProjectName: null,
+    currentProject: null,
   },
   actions: {
     saveProject({ commit }, project) {
@@ -25,6 +26,7 @@ export default {
       return HTTP().get('/projects')
         .then(({ data }) => {
           commit('setProjects', data);
+          commit('setCurrentProject', null);
         });
     },
     createProject({ commit, state }) {
@@ -40,6 +42,9 @@ export default {
   getters: {
   },
   mutations: {
+    setCurrentProject(state, project) {
+      state.currentProject = project;
+    },
     setNewProjectName(state, name) {
       state.newProjectName = name;
     },

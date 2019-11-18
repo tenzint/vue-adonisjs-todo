@@ -2,6 +2,7 @@
   <v-layout row wrap class="mt-4">
     <v-flex xs9 class="test-xs-left pl-3">
       <span
+        @click="$emit('onClick')"
         v-if="!isEditMode"
       >
         {{ title }}

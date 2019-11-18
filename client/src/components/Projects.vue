@@ -4,45 +4,6 @@
       v-for="project in projects"
       :key="project.id"
     >
-      <v-layout row wrap class="mt-4">
-        <v-flex xs9 class="test-xs-left pl-3">
-          <span
-            v-if="!project.isEditMode"
-          >
-            {{ project.title }}
-          </span>
-          <v-text-field
-            autofocus
-            v-if="project.isEditMode"
-            :value="project.title"
-            @keyup.enter="saveProject(project)"
-            @input="setProjectTitle({
-              project,
-              title: $event,
-            })"
-          >
-          </v-text-field>
-        </v-flex>
-        <v-flex xs3>
-          <v-icon
-            @click="setEditMode(project)"
-            v-if="!project.isEditMode"
-          >
-            mdi-pencil
-          </v-icon>
-          <v-icon
-            @click="saveProject(project)"
-            v-if="project.isEditMode"
-          >
-            mdi-check
-          </v-icon>
-          <v-icon
-            @click="deleteProject(project)"
-          >
-            mdi-delete
-          </v-icon>
-        </v-flex>
-      </v-layout>
       <EditableRecord
         :isEditMode="project.isEditMode"
         :title="project.title"
@@ -50,9 +11,10 @@
           project,
           title: $event,
         })"
-        @onEdit="setEditMode(record)"
-        @onSave="saveProject(record)"
-        @onDelete="deleteProject(record)"
+        @onClick="projectClicked(project)"
+        @onEdit="setEditMode(project)"
+        @onSave="saveProject(project)"
+        @onDelete="deleteProject(project)"
       >
       </EditableRecord>
     </div>
@@ -85,17 +47,25 @@ export default {
     ]),
   },
   methods: {
+    projectClicked(project) {
+      this.setCurrentProject(project);
+      this.fetchTasksForProject(project);
+    },
     ...mapMutations('projects', [
       'setNewProjectName',
       'setEditMode',
       'unsetEditMode',
       'setProjectTitle',
+      'setCurrentProject',
     ]),
     ...mapActions('projects', [
       'createProject',
-      'fetchProject',
+      'fetchProjects',
       'saveProject',
       'deleteProject',
+    ]),
+    ...mapActions('tasks', [
+      'fetchTasksForProject',
     ]),
   },
 };
@@ -111,6 +81,6 @@ export default {
 }
 
 .v-icon:hover {
-  color: #333;
+  color: rgb(156, 39, 39);
 }
 </style>
