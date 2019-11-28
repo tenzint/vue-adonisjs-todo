@@ -43,7 +43,7 @@
               ></v-text-field>
             </v-form>
           </v-card-text>
-          <v-alert type="error" :value="loginError">{{ loginError }}</v-alert>
+          <v-alert type="error" :value="!!loginError">{{ loginError }}</v-alert>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="success" @click="login">

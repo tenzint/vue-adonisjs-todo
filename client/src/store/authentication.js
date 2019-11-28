@@ -32,7 +32,7 @@ export default {
         });
     },
     login({ commit, state }) {
-      commit('setRegisterError', null);
+      commit('setLoginError', null);
       return HTTP().post('auth/login', {
         email: state.registerEmail,
         password: state.registerPassword,
